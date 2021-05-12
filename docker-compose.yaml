@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  db-1:
+    image: mysql/mysql-server:8.0.25
+    command: --default-authentication-plugin=mysql_native_password --binlog_transaction_dependency_tracking=WRITESET --enforce_gtid_consistency=ON --gtid_mode=ON --server_id=10001 --slave_parallel_type=LOGICAL_CLOCK --slave_preserve_commit_order=ON
+    restart: always
+    hostname: db-1
+    ports:
+      - 33061:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: 123
+      MYSQL_ROOT_HOST: '%'
+  db-2:
+    image: mysql/mysql-server:8.0.25
+    command: --default-authentication-plugin=mysql_native_password --binlog_transaction_dependency_tracking=WRITESET --enforce_gtid_consistency=ON --gtid_mode=ON --server_id=10002 --slave_parallel_type=LOGICAL_CLOCK --slave_preserve_commit_order=ON
+    restart: always
+    hostname: db-2
+    ports:
+      - 33062:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: 123
+      MYSQL_ROOT_HOST: '%'
+  db-3:
+    image: mysql/mysql-server:8.0.25
+    command: --default-authentication-plugin=mysql_native_password --binlog_transaction_dependency_tracking=WRITESET --enforce_gtid_consistency=ON --gtid_mode=ON --server_id=10003 --slave_parallel_type=LOGICAL_CLOCK --slave_preserve_commit_order=ON
+    restart: always
+    hostname: db-3
+    ports:
+      - 33063:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: 123
+      MYSQL_ROOT_HOST: '%'
